@@ -19,7 +19,6 @@ npm install --save vovanr-project-logos
 ```
 
 ## Usage
-See: [example](example/app.jsx)
 
 ```js
 var foo = require('vovanr-project-logos');

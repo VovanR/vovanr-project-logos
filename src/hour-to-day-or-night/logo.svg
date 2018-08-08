@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
-	<defs>
-		<clipPath id="day">
-			<path d="M0 229.267h128v256H0z"/>
-		</clipPath>
+  <defs>
+    <clipPath id="day">
+      <path d="M0 229.267h128v256H0z"/>
+    </clipPath>
 
-		<clipPath id="night">
-			<path d="M128 229.267h128v256H128z"/>
-		</clipPath>
-	</defs>
+    <clipPath id="night">
+      <path d="M128 229.267h128v256H128z"/>
+    </clipPath>
+  </defs>
 
   <path d="M0 0h256v256H0z" fill="none"/>
 
-	<g transform="translate(0 -229.267)">
-		<circle cx="128" cy="357.267" r="126.906" clip-path="url(#night)" fill="#03a9f4"/>
-		<circle cx="128" cy="357.267" r="109.988" clip-path="url(#night)" fill="#e0f7fa"/>
-		<circle cx="128" cy="357.267" r="126.906" clip-path="url(#day)" fill="#ffc107"/>
-		<circle cx="128" cy="357.267" r="109.988" clip-path="url(#day)" fill="#fff176"/>
-	</g>
+  <g transform="translate(0 -229.267)">
+    <circle cx="128" cy="357.267" r="126.906" clip-path="url(#night)" fill="#03a9f4"/>
+    <circle cx="128" cy="357.267" r="109.988" clip-path="url(#night)" fill="#e0f7fa"/>
+    <circle cx="128" cy="357.267" r="126.906" clip-path="url(#day)" fill="#ffc107"/>
+    <circle cx="128" cy="357.267" r="109.988" clip-path="url(#day)" fill="#fff176"/>
+  </g>
 </svg>

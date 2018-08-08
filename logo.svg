@@ -2,12 +2,12 @@
   <defs>
     <mask id="hole">
       <rect width="100%" height="100%" fill="#fff"/>
-	    <circle r="48" cx="128" cy="128" fill="#000"/>
+      <circle r="48" cx="128" cy="128" fill="#000"/>
     </mask>
 
     <linearGradient id="gradient">
-        <stop offset="0%"  stop-color="hsla(152, 100%, 50%, 1)"/>
-        <stop offset="90%" stop-color="hsla(177, 100%, 50%, 1)"/>
+      <stop offset="0%"  stop-color="hsla(152, 100%, 50%, 1)"/>
+      <stop offset="90%" stop-color="hsla(177, 100%, 50%, 1)"/>
     </linearGradient>
   </defs>
 
