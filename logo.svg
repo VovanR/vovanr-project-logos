@@ -11,7 +11,7 @@
     </linearGradient>
   </defs>
 
-	<path fill="none" d="M0 0h256v256H0z"/>
+  <path d="M0 0h256v256H0z" fill="none"/>
 
   <g mask="url(#hole)">
     <circle r="100" cx="128" cy="128" fill="hsla(254, 100%, 50%, 1)"/>
