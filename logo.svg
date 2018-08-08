@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <mask id="hole">
+      <rect width="100%" height="100%" fill="#fff"/>
+	    <circle r="48" cx="128" cy="128" fill="#000"/>
+    </mask>
+
+    <linearGradient id="gradient">
+        <stop offset="0%"  stop-color="hsla(152, 100%, 50%, 1)"/>
+        <stop offset="90%" stop-color="hsla(177, 100%, 50%, 1)"/>
+    </linearGradient>
+  </defs>
+
+	<path fill="none" d="M0 0h256v256H0z"/>
+
+  <g mask="url(#hole)">
+    <circle r="100" cx="128" cy="128" fill="hsla(254, 100%, 50%, 1)"/>
+    <circle r="94" cx="128" cy="128" fill="url(#gradient)"/>
+    <circle r="54" cx="128" cy="128" fill="hsla(254, 100%, 50%, 1)"/>
+  </g>
+
+  <g id="cross" fill="hsla(58, 100%, 50%, 1)">
+    <rect width="6" height="244" x="125" y="6"/>
+    <rect width="244" height="6" x="6" y="125"/>
+  </g>
+</svg>
