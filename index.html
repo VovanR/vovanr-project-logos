@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vovanr-service-logos</title>
+  <meta name="description" content"Logo collection of VovanR's services">
+
+  <style>
+    html {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    body {
+      --item-width: 200px;
+
+      display: flex;
+      flex: 1;
+      flex-wrap: wrap;
+      max-width: calc(4 * var(--item-width));
+      margin: 0;
+    }
+    a {
+      display: block;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      flex-basis: var(--item-width);
+      padding: 25px 10px;
+    }
+    figure {
+      text-align: center;
+      margin: 0;
+    }
+    img {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 5px;
+    }
+    figcaption {
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  const template = (project) => `
+    <a href="https://github.com/vovanr/${project}">
+      <figure>
+        <div>
+          <img src="src/${project}/logo.svg"/>
+        </div>
+
+        <figcaption>
+          ${project}
+        </figcaption>
+      </figure>
+    </a>
+  `
+  document.body.innerHTML = [
+    'choice-roulete',
+    'hour-to-day-or-night',
+    'number-converter',
+    'test-react-redux-weather',
+    'when-to-go-from-work',
+  ].reduce((acc, project) => acc + template(project), '')
+</script>
+
+</body>
+</html>
