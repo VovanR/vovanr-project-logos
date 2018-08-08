@@ -12,8 +12,6 @@
 
 Demo: [vovanr.github.io/vovanr-project-logos][demo]
 
-![](preview.png)
-
 ## Install
 
 ```shell
@@ -29,6 +27,18 @@ var foo = require('vovanr-project-logos');
 foo()
 //=> Foo
 ```
+
+## Development
+
+```shell
+git clone git@github.com:VovanR/vovanr-service-logos.git
+cd vovanr-service-logos
+npm install
+npm start
+```
+
+Open https://localhost:8080
+
 
 ## License
 MIT © [Vladimir Rodkin](https://github.com/VovanR)
