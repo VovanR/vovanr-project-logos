@@ -8,7 +8,7 @@
 [![Dependency Status][depstat-image]][depstat-url]
 [![DevDependency Status][depstat-dev-image]][depstat-dev-url]
 
-> Logo collection of VovanR's services
+> Logo collection of VovanR's projects
 
 Demo: [vovanr.github.io/vovanr-project-logos][demo]
 
