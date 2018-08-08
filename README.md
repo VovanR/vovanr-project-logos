@@ -5,8 +5,6 @@
 
 [![Commitizen friendly][commitizen-image]][commitizen-url]
 
-[![NPM version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
 [![Dependency Status][depstat-image]][depstat-url]
 [![DevDependency Status][depstat-dev-image]][depstat-dev-url]
 
@@ -32,25 +30,6 @@ foo()
 //=> Foo
 ```
 
-## API
-
-### foo(bar, [options])
-
-#### bar
-
-Type: `string`
-
-Bar to foo
-
-#### options
-
-Type: `Object`
-
-##### baz
-
-Type: `string`<br>
-Default: `-`
-
 ## License
 MIT © [Vladimir Rodkin](https://github.com/VovanR)
 
@@ -58,12 +37,6 @@ MIT © [Vladimir Rodkin](https://github.com/VovanR)
 
 [commitizen-url]: https://commitizen.github.io/cz-cli/
 [commitizen-image]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square
-
-[npm-url]: https://npmjs.org/package/vovanr-project-logos
-[npm-image]: https://img.shields.io/npm/v/vovanr-project-logos.svg?style=flat-square
-
-[travis-url]: https://travis-ci.org/VovanR/vovanr-project-logos
-[travis-image]: https://img.shields.io/travis/VovanR/vovanr-project-logos.svg?style=flat-square
 
 [depstat-url]: https://david-dm.org/VovanR/vovanr-project-logos
 [depstat-image]: https://david-dm.org/VovanR/vovanr-project-logos.svg?style=flat-square
