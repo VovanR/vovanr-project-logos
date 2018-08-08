@@ -31,8 +31,8 @@ foo()
 ## Development
 
 ```shell
-git clone git@github.com:VovanR/vovanr-service-logos.git
-cd vovanr-service-logos
+git clone git@github.com:VovanR/vovanr-project-logos.git
+cd vovanr-project-logos
 npm install
 npm start
 ```
