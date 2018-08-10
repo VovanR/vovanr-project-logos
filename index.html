@@ -8,39 +8,102 @@
   <meta name="description" content="Logo collection of VovanR's projects">
 
   <style>
+    :root {
+      --item-width: 200px;
+      --icon-size: 120px;
+    }
+
     html {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     body {
-      --item-width: 200px;
-
       display: flex;
       flex: 1;
       flex-wrap: wrap;
+      justify-content: center;
       max-width: calc(4 * var(--item-width));
-      margin: 0;
+      margin: 25px;
     }
     a {
+      --card-background-color: hsla(0, 0%, 100%, 1);
+
       display: block;
       box-sizing: border-box;
       flex-shrink: 0;
       flex-basis: var(--item-width);
       padding: 25px 10px;
+      transition: background-color 0.25s ease;
+      border-radius: 5px;
+      background-color: var(--card-background-color);
+      text-decoration: none;
+    }
+    a:hover {
+      --card-background-color: hsla(0, 0%, 96%, 1);
+    }
+    a:focus {
+      --card-background-color: hsla(0, 0%, 96%, 1);
+      outline: none;
     }
     figure {
       text-align: center;
       margin: 0;
     }
-    img {
-      width: 120px;
-      height: 120px;
+    figure > div {
+      position: relative;
       margin-bottom: 5px;
+    }
+    img {
+      width: var(--icon-size);
+      height: var(--icon-size);
+    }
+    img::before {
+      content: '';
+      background-color: var(--card-background-color);
+      transition: background-color 0.25s ease;
+      display: inline-block;
+      width: var(--icon-size);
+      height: var(--icon-size);
+    }
+    img::after {
+      content: '';
+      color: silver;
+      background-color: hsla(0, 0%, 98%, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: calc(50% - calc(var(--icon-size) / 2));
+      width: var(--icon-size);
+      height: var(--icon-size);
+      box-shadow: 0 0 0 1px hsla(0, 0%, 88%, 1);
+      border-radius: 50%;
     }
     figcaption {
       font-family: monospace;
+      color: silver;
+      transition: color 0.25s ease;
+    }
+    a:focus figcaption,
+    a:hover figcaption {
+      color: blue;
+    }
+
+    @media (max-width: calc(200px * 4 - 1px)) {
+      body {
+        /* background-color: lime; */
+        --item-width: 150px;
+      }
+    }
+
+    @media (max-width: calc(200px * 3 - 1px)) {
+      body {
+        /* background-color: blue; */
+        --item-width: 100px;
+      }
     }
   </style>
 </head>
@@ -51,7 +114,7 @@
     <a href="https://github.com/vovanr/${project}">
       <figure>
         <div>
-          <img src="src/${project}/logo.svg"/>
+          <img src="src/${project}/logo.svg" alt=""/>
         </div>
 
         <figcaption>
