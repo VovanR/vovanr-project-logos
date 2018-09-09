@@ -11,6 +11,7 @@
     :root {
       --item-width: 200px;
       --icon-size: 120px;
+      --card-background-color: hsla(0, 0%, 100%, 1);
     }
 
     html {
@@ -19,6 +20,7 @@
       align-items: center;
       justify-content: center;
     }
+
     body {
       display: flex;
       flex: 1;
@@ -27,13 +29,12 @@
       max-width: calc(4 * var(--item-width));
       margin: 25px;
     }
-    header {
+
+    .header {
       width: 100%;
       text-align: center;
     }
-    a {
-      --card-background-color: hsla(0, 0%, 100%, 1);
-
+    .header__url {
       display: block;
       box-sizing: border-box;
       flex-shrink: 0;
@@ -44,26 +45,53 @@
       background-color: var(--card-background-color);
       text-decoration: none;
     }
-    a:hover {
+    .header__url:hover {
       --card-background-color: hsla(0, 0%, 96%, 1);
     }
-    a:focus {
+    .header__url:focus {
       --card-background-color: hsla(0, 0%, 96%, 1);
       outline: none;
     }
-    figure {
-      text-align: center;
-      margin: 0;
-    }
-    figure > div {
-      position: relative;
-      margin-bottom: 5px;
-    }
-    img {
+
+    .header__logo {
       width: var(--icon-size);
       height: var(--icon-size);
     }
-    img::before {
+
+    .project {
+      display: block;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      flex-basis: var(--item-width);
+      padding: 25px 10px;
+      transition: background-color 0.25s ease;
+      border-radius: 5px;
+      background-color: var(--card-background-color);
+      text-decoration: none;
+    }
+    .project:hover {
+      --card-background-color: hsla(0, 0%, 96%, 1);
+    }
+    .project:focus {
+      --card-background-color: hsla(0, 0%, 96%, 1);
+      outline: none;
+    }
+
+    .project__content {
+      text-align: center;
+      margin: 0;
+    }
+
+    .project__logo-placeholder {
+      position: relative;
+      margin-bottom: 5px;
+    }
+
+    .project__logo {
+      width: var(--icon-size);
+      height: var(--icon-size);
+    }
+    .project__logo::before {
       content: '';
       background-color: var(--card-background-color);
       transition: background-color 0.25s ease;
@@ -71,7 +99,7 @@
       width: var(--icon-size);
       height: var(--icon-size);
     }
-    img::after {
+    .project__logo::after {
       content: '';
       color: silver;
       background-color: hsla(0, 0%, 98%, 1);
@@ -86,13 +114,19 @@
       box-shadow: 0 0 0 1px hsla(0, 0%, 88%, 1);
       border-radius: 50%;
     }
-    figcaption {
+
+    .project__favicon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .project__name {
       font-family: monospace;
       color: silver;
       transition: color 0.25s ease;
     }
-    a:focus figcaption,
-    a:hover figcaption {
+    .project:focus .project__name,
+    .project:hover .project__name {
       color: blue;
     }
 
@@ -115,13 +149,15 @@
 
 <script>
   const template = (project) => `
-    <a href="https://github.com/vovanr/${project}">
-      <figure>
-        <div>
-          <img src="src/${project}/logo.svg" alt=""/>
+    <a class="project" href="https://github.com/vovanr/${project}">
+      <figure class="project__content">
+        <div class="project__logo-placeholder">
+          <img class="project__logo" src="src/${project}/logo.svg" alt=""/>
         </div>
 
-        <figcaption>
+        <img class="project__favicon" src="src/${project}/logo.svg" alt=""/>
+
+        <figcaption class="project__name">
           ${project}
         </figcaption>
       </figure>
@@ -129,9 +165,9 @@
   `
 
   const logo = `
-    <header>
-      <a href="https://github.com/vovanr/vovanr-project-logos">
-        <img src="logo.svg" alt=""/>
+    <header class="header">
+      <a class="header__url" href="https://github.com/vovanr/vovanr-project-logos">
+        <img class="header__logo" src="logo.svg" alt=""/>
       </a>
     </header>
   `
