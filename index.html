@@ -32,6 +32,9 @@
 
     .header {
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .header__url {
@@ -39,7 +42,7 @@
       align-items: center;
       box-sizing: border-box;
       flex-shrink: 0;
-      flex-basis: var(--item-width);
+      /*flex-basis: var(--item-width);*/
       padding: 5px 10px;
       transition: background-color 0.25s ease;
       border-radius: 5px;
@@ -82,6 +85,25 @@
       font-family: monospace;
       color: silver;
       content: '—';
+    }
+
+    .header__percent {
+      font-family: monospace;
+    }
+    .header__percent_progress_0 {
+      color: #F44336;
+    }
+    .header__percent_progress_25 {
+      color: #F57C00;
+    }
+    .header__percent_progress_50 {
+      color: #C0CA33;
+    }
+    .header__percent_progress_75 {
+      color: #4CAF50;
+    }
+    .header__percent_progress_100 {
+      color: #009688;
     }
 
     .project {
@@ -174,39 +196,9 @@
 <body>
 
 <script>
-  const template = (project) => `
-    <a class="project" href="https://github.com/vovanr/${project}">
-      <figure class="project__content">
-        <div class="project__logo-placeholder">
-          <img class="project__logo" src="src/${project}/logo.svg" alt=""/>
-        </div>
+  const REPO_URL = 'https://github.com/vovanr'
 
-        <img class="project__favicon" src="src/${project}/logo.svg" alt=""/>
-
-        <figcaption class="project__name">
-          ${project}
-        </figcaption>
-      </figure>
-    </a>
-  `
-
-  const logo = `
-    <header class="header">
-      <a class="header__url" href="https://github.com/vovanr/vovanr-project-logos">
-        <img class="header__logo" src="logo.svg" alt=""/>
-
-        <span class="header__name">
-          ${document.querySelector('title').textContent}
-        </span>
-
-        <span class="header__description">
-          ${document.querySelector('meta[name="description"]').getAttribute('content')}
-        </span>
-      </a>
-    </header>
-  `
-
-  document.body.innerHTML = [
+  const PROJECTS = [
     'arabic-roman-convert.js',
     'awesome-vovanr',
     'bem-classname-parser',
@@ -229,7 +221,78 @@
     'timers',
     'when-to-go-from-work',
     'yes-all-not',
-  ].reduce((acc, project) => acc + template(project), logo)
+  ]
+
+  const template = (project) => `
+    <a class="project" href="${REPO_URL}/${project}">
+      <figure class="project__content">
+        <div class="project__logo-placeholder">
+          <img class="project__logo" src="src/${project}/logo.svg" alt=""/>
+        </div>
+
+        <img class="project__favicon" src="src/${project}/logo.svg" alt=""/>
+
+        <figcaption class="project__name">
+          ${project}
+        </figcaption>
+      </figure>
+    </a>
+  `
+
+  const logo = `
+    <header class="header">
+      <a class="header__url" href="${REPO_URL}/vovanr-project-logos">
+        <img class="header__logo" src="logo.svg" alt=""/>
+
+        <span class="header__name">
+          ${document.querySelector('title').textContent}
+        </span>
+
+        <span class="header__description">
+          ${document.querySelector('meta[name="description"]').getAttribute('content')}
+        </span>
+      </a>
+
+      <span class="header__percent" id="percent"></span>
+    </header>
+  `
+
+  document.body.innerHTML = PROJECTS.reduce((acc, project) => acc + template(project), logo)
+  const counter = {
+    done: 0,
+    fail: 0,
+    length: PROJECTS.length,
+    get percents() {
+      return Math.round(this.done / this.length * 100)
+    },
+    addDone() {
+      this.done += 1
+    },
+    addFail() {
+      this.fail += 1
+    },
+  }
+  const getPercentProgressName = (percents) => {
+    return percents > 99 ? '100' :
+           percents > 74 ? '75' :
+           percents > 49 ? '50' :
+           percents > 24 ? '25' :
+                           '0'
+  }
+  Promise.all(PROJECTS.map(project => fetch(`src/${project}/logo.svg`)
+      .then(resp => {
+        if (resp.ok) {
+          counter.addDone()
+        } else {
+          counter.addFail()
+        }
+      })
+      .catch(() => {counter.addFail()})
+  ))
+    .then(() => {document.getElementById('percent').textContent = `${counter.percents}%`})
+    .then(() => {
+      document.getElementById('percent').classList.add(`header__percent_progress_${getPercentProgressName(counter.percents)}`)
+    })
 </script>
 
 </body>
