@@ -15,31 +15,32 @@
     }
 
     html {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      /*min-height: 100vh;*/
+      /*display: flex;*/
+      /*align-items: center;*/
+      /*justify-content: center;*/
     }
 
     body {
       display: flex;
-      flex: 1;
+      /*flex: 1;*/
       flex-wrap: wrap;
-      justify-content: center;
-      max-width: calc(4 * var(--item-width));
+      /*justify-content: center;*/
+      /*max-width: calc(4 * var(--item-width));*/
       margin: 25px;
     }
 
     .header {
       width: 100%;
-      text-align: center;
     }
+
     .header__url {
-      display: block;
+      display: inline-flex;
+      align-items: center;
       box-sizing: border-box;
       flex-shrink: 0;
       flex-basis: var(--item-width);
-      padding: 25px 10px;
+      padding: 5px 10px;
       transition: background-color 0.25s ease;
       border-radius: 5px;
       background-color: var(--card-background-color);
@@ -54,8 +55,33 @@
     }
 
     .header__logo {
+      --icon-size: 31px;
       width: var(--icon-size);
       height: var(--icon-size);
+      margin-right: 10px;
+    }
+
+    .header__name {
+      font-family: monospace;
+      color: silver;
+      transition: color 0.25s ease;
+    }
+    .header__url:focus .header__name,
+    .header__url:hover .header__name {
+      color: blue;
+    }
+
+    .header__description {
+      display: inline-block;
+      font-family: monospace;
+      color: silver;
+      margin-left: 0.5em;
+    }
+    .header__description::before {
+      display: inline-block;
+      font-family: monospace;
+      color: silver;
+      content: '—';
     }
 
     .project {
@@ -168,6 +194,14 @@
     <header class="header">
       <a class="header__url" href="https://github.com/vovanr/vovanr-project-logos">
         <img class="header__logo" src="logo.svg" alt=""/>
+
+        <span class="header__name">
+          ${document.querySelector('title').textContent}
+        </span>
+
+        <span class="header__description">
+          ${document.querySelector('meta[name="description"]').getAttribute('content')}
+        </span>
       </a>
     </header>
   `
