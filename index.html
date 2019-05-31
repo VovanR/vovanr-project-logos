@@ -196,34 +196,8 @@
 <body>
 
 <script>
-  const REPO_URL = 'https://github.com/vovanr'
-
-  const PROJECTS = [
-    'arabic-roman-convert.js',
-    'awesome-vovanr',
-    'bem-classname-parser',
-    'choice-roulete',
-    'convert2base64',
-    'dozed-off',
-    'dtr',
-    'format-thousands',
-    'from-date-to-date',
-    'frontend-elements-dictionary',
-    'hour-to-chinese-zodiac',
-    'hour-to-day-or-night',
-    'notes',
-    'number-converter',
-    'ruler',
-    'show-me-which',
-    'sound-reaction',
-    'string-cases',
-    'test-react-redux-weather',
-    'text-lines',
-    'time-calculator',
-    'timers',
-    'when-to-go-from-work',
-    'yes-all-not',
-  ]
+  const REPO_URL = "https://github.com/vovanr";
+  const SERVICES_JSON_URL = "https://vovanr.com/services-json/dist/services.json";
 
   const template = (project) => `
     <a class="project" href="${REPO_URL}/${project}">
@@ -239,7 +213,7 @@
         </figcaption>
       </figure>
     </a>
-  `
+  `;
 
   const logo = `
     <header class="header">
@@ -257,44 +231,91 @@
 
       <span class="header__percent" id="percent"></span>
     </header>
-  `
+  `;
 
-  document.body.innerHTML = PROJECTS.reduce((acc, project) => acc + template(project), logo)
   const counter = {
     done: 0,
     fail: 0,
-    length: PROJECTS.length,
+    _length: 0,
+    get length() {
+      return this._length;
+    },
+    set length(length) {
+      this._length = length;
+    },
     get percents() {
-      return Math.round(this.done / this.length * 100)
+      return Math.round(this.done / this.length * 100);
     },
     addDone() {
-      this.done += 1
+      this.done += 1;
     },
     addFail() {
-      this.fail += 1
+      this.fail += 1;
     },
+  };
+
+  function fetchServicesJSON() {
+    return fetch(SERVICES_JSON_URL).then(resp => resp.json());
   }
-  const getPercentProgressName = (percents) => {
-    return percents > 99 ? '100' :
-           percents > 74 ? '75' :
-           percents > 49 ? '50' :
-           percents > 24 ? '25' :
-                           '0'
-  }
-  Promise.all(PROJECTS.map(project => fetch(`src/${project}/logo.svg`)
-      .then(resp => {
-        if (resp.ok) {
-          counter.addDone()
-        } else {
-          counter.addFail()
-        }
-      })
-      .catch(() => {counter.addFail()})
-  ))
-    .then(() => {document.getElementById('percent').textContent = `${counter.percents}%`})
-    .then(() => {
-      document.getElementById('percent').classList.add(`header__percent_progress_${getPercentProgressName(counter.percents)}`)
+
+  fetchServicesJSON()
+    .then(services => services.map(service => service.id))
+    .then(serviceNames => {
+      return {
+        template: serviceNames.reduce((acc, serviceName) => acc + template(serviceName), logo),
+        serviceNames
+      };
     })
+    .then(({template, serviceNames}) => {
+      fillBodyTemplate(template);
+
+      return serviceNames;
+    })
+    .then(serviceNames => {
+      counter.length = serviceNames.length;
+
+      return Promise.all(serviceNames.map(
+        serviceName => fetchServiceSrcIcon(serviceName)
+          .then(() => counter.addDone())
+          .catch(() => counter.addFail())
+      ))
+    })
+    .then(fillPercentsContainer)
+    .then(updatePercentClassName);
+
+  function fetchServiceSrcIcon(serviceName) {
+    return new Promise((resolve, reject) => {
+      fetch(`src/${serviceName}/logo.svg`)
+        .then(resp => {
+          if (resp.ok) {
+            resolve();
+          } else {
+            reject();
+          }
+        })
+        .catch(() => reject());
+    })
+  }
+
+  function fillBodyTemplate(template) {
+    document.body.innerHTML = template;
+  }
+
+  function fillPercentsContainer() {
+    document.querySelector('#percent').textContent = `${counter.percents}%`;
+  }
+
+  function updatePercentClassName() {
+    document.querySelector('#percent').classList.add(`header__percent_progress_${getPercentProgressName(counter.percents)}`);
+  }
+
+  function getPercentProgressName(percents) {
+    return percents > 99 ? '100':
+           percents > 74 ?  '75':
+           percents > 49 ?  '50':
+           percents > 24 ?  '25':
+                             '0'
+  }
 </script>
 
 </body>
