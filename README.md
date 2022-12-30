@@ -5,9 +5,6 @@
 
 [![Commitizen friendly][commitizen-image]][commitizen-url]
 
-[![Dependency Status][depstat-image]][depstat-url]
-[![DevDependency Status][depstat-dev-image]][depstat-dev-url]
-
 > Logo collection of VovanR's projects
 
 Demo: [vovanr.github.io/vovanr-project-logos][demo]
@@ -46,9 +43,3 @@ MIT © [Vladimir Rodkin](https://github.com/VovanR)
 
 [commitizen-url]: https://commitizen.github.io/cz-cli/
 [commitizen-image]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square
-
-[depstat-url]: https://david-dm.org/VovanR/vovanr-project-logos
-[depstat-image]: https://david-dm.org/VovanR/vovanr-project-logos.svg?style=flat-square
-
-[depstat-dev-url]: https://david-dm.org/VovanR/vovanr-project-logos
-[depstat-dev-image]: https://david-dm.org/VovanR/vovanr-project-logos/dev-status.svg?style=flat-square
